@@ -1,0 +1,22 @@
+﻿<Window x:Class="BusRouterUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BusRouterUI" xmlns:views="clr-namespace:BusRouterUI.Views"
+        xmlns:vms="clr-namespace:BusRouterUI.ViewModels"
+        mc:Ignorable="d"
+        Title="BusRouter" Height="950" Width="1400" MinHeight="950" MaxHeight="950" MinWidth="1400" MaxWidth="1400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:BusRouterViewModel}">
+                <views:BusRouterView></views:BusRouterView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:SetBusRoutingViewModel}">
+                <views:SetBusRoutingView></views:SetBusRoutingView>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
+    </Grid>
+</Window>

@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="BusRouterUI.Views.SetBusRoutingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BusRouterUI.Views">
+    <Grid MaxWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" FontSize="28" FontWeight="Bold">Bus Routing Settings</TextBlock>
+
+        <TextBlock Grid.Row="1" Margin="0,30,0,0">Enter amount of stop wait milliseconds (2000 recommended):</TextBlock>
+
+        <TextBox Grid.Row="2" Text="{Binding StopWaitMS, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="3" Margin="0,30,0,0">Enter the number of pixels the bus should move per second (150 recommended):</TextBlock>
+
+        <TextBox Grid.Row="4" Text="{Binding SpeedPixelsPerSecond, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="5" Margin="0,30,0,0">Enter amount of milliseconds to update map (10 recommended):</TextBlock>
+
+        <TextBox Grid.Row="6" Text="{Binding UpdateMapMS, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="7" Margin="0,30,0,0">Enter amount of milliseconds to add person  stop (1250 recommended):</TextBlock>
+
+        <TextBox Grid.Row="8" Text="{Binding StopPeopleIncreaseMS, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="9" Margin="0,30,0,0">Enter amount of seats for each bus (50 recommended):</TextBlock>
+
+        <TextBox Grid.Row="10" Text="{Binding AmountOfSeats, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Grid.Row="11" Margin="50,30,50,0" Height="70" Command="{Binding SaveCommand}">
+            <TextBlock FontSize="28">Save Changes</TextBlock>
+        </Button>
+    </Grid>
+</UserControl>

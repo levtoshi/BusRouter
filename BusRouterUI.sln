@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusRouterUI", "BusRouterUI\BusRouterUI.csproj", "{7078B5D5-B800-4DF6-8278-F7523A989182}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{16E42A9B-9EB4-480F-9ED6-6F8616FAC5F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7078B5D5-B800-4DF6-8278-F7523A989182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7078B5D5-B800-4DF6-8278-F7523A989182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7078B5D5-B800-4DF6-8278-F7523A989182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7078B5D5-B800-4DF6-8278-F7523A989182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E42A9B-9EB4-480F-9ED6-6F8616FAC5F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E42A9B-9EB4-480F-9ED6-6F8616FAC5F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E42A9B-9EB4-480F-9ED6-6F8616FAC5F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E42A9B-9EB4-480F-9ED6-6F8616FAC5F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {846850B5-8C86-46BC-90C1-D52481FE209F}
+	EndGlobalSection
+EndGlobal
