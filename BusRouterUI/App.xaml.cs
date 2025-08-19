@@ -1,17 +1,9 @@
-﻿using BLL.InterfaceAccessors;
-using BLL.Models;
-using BLL.Services.BusRoutingProviders;
-using BLL.Services.BusServices;
-using BLL.Services.Initializers;
-using BLL.Services.StopServices;
-using BusRouterUI.Accessors;
-using BusRouterUI.Navigation.Services;
-using BusRouterUI.Navigation.Stores;
-using BusRouterUI.Stores;
+﻿using BusRouterUI.Navigation.Services;
 using BusRouterUI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using BusRouterUI.HostBuilders;
 
 namespace BusRouterUI
 {
@@ -22,32 +14,13 @@ namespace BusRouterUI
         public App()
         {
             _host = Host.CreateDefaultBuilder()
+                .AddStores()
+                .AddAccessors()
+                .AddServices()
+                .AddViewModels()
+                .AddNavigation()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<MapStore>();
-                    services.AddSingleton<BusRoutingContextStore>();
-                    services.AddSingleton<BusRouterControlContextStore>();
-
-                    services.AddSingleton<IMapAccessor, MapStoreAccessor>();
-                    services.AddSingleton<IBusRoutingContextAccessor, BusRoutingContextStoreAccessor>();
-                    services.AddSingleton<IBusRouterControlContextAccessor, BusRouterControlContextStoreAccessor>();
-
-                    services.AddSingleton<IBusRoutingProvider, BusRoutingProvider>();
-                    services.AddSingleton<IBusService, BusService>();
-                    services.AddSingleton<IStopService, StopService>();
-
-                    services.AddSingleton<MainViewModel>();
-                    services.AddSingleton<SetBusRoutingViewModel>();
-                    services.AddSingleton<BusRouterViewModel>();
-
-                    services.AddSingleton<NavigationStore>();
-
-                    services.AddSingleton<Func<BusRouterViewModel>>((s) => () => s.GetRequiredService<BusRouterViewModel>());
-                    services.AddSingleton<INavigationService<BusRouterViewModel>, NavigationService<BusRouterViewModel>>();
-                    services.AddSingleton<Func<SetBusRoutingViewModel>>((s) => () => s.GetRequiredService<SetBusRoutingViewModel>());
-                    services.AddSingleton<INavigationService<SetBusRoutingViewModel>, NavigationService<SetBusRoutingViewModel>>();
-
-
                     services.AddSingleton(s => new MainWindow()
                     {
                         DataContext = s.GetRequiredService<MainViewModel>()

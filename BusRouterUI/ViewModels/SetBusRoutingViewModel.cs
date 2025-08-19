@@ -1,5 +1,4 @@
-﻿using BLL.Models;
-using BusRouterUI.Commands;
+﻿using BusRouterUI.Commands;
 using BusRouterUI.Navigation.Services;
 using BusRouterUI.Stores;
 using System.Collections;
