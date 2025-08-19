@@ -2,7 +2,7 @@
 
 namespace BusRouterUI.ViewModels
 {
-    public class ViewModelsBase : INotifyPropertyChanged
+    public class ViewModelsBase : INotifyPropertyChanged, IDisposable
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

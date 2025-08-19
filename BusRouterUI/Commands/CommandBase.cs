@@ -17,7 +17,5 @@ namespace BusRouterUI.Commands
         {
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
-
-        public virtual void Dispose() { }
     }
 }

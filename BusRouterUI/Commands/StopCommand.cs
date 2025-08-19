@@ -1,40 +1,44 @@
-﻿using BLL.Services.BusRoutingProviders;
+﻿using BLL.Models;
+using BLL.Services.BusRoutingProviders;
+using BusRouterUI.Stores;
 using System.ComponentModel;
 
 namespace BusRouterUI.Commands
 {
-    public class StopCommand : CommandBase
+    public class StopCommand : CommandBase, IDisposable
     {
         private readonly IBusRoutingProvider _busRoutingProvider;
+        private readonly BusRouterControlContextStore _busRouterControlContextStore;
+
+        public StopCommand(IBusRoutingProvider busRouterService, BusRouterControlContextStore busRouterControlContextStore)
+        {
+            _busRoutingProvider = busRouterService;
+            _busRouterControlContextStore = busRouterControlContextStore;
+
+            _busRouterControlContextStore.BusRouterControlContextObject.PropertyChanged += OnControlContextPropertyChanged;
+        }
 
         public override void Execute(object? parameter)
         {
             _busRoutingProvider.StopThreads();
         }
 
-        public StopCommand(IBusRoutingProvider busRouterService)
-        {
-            _busRoutingProvider = busRouterService;
-            _busRoutingProvider.PropertyChanged += OnServiceChanged;
-        }
-
         public override bool CanExecute(object? parameter)
         {
-            return !_busRoutingProvider.IsStopped && base.CanExecute(parameter);
+            return !_busRouterControlContextStore.BusRouterControlContextObject.IsStopped && base.CanExecute(parameter);
         }
 
-        private void OnServiceChanged(object? sender, PropertyChangedEventArgs e)
+        private void OnControlContextPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(BusRoutingProvider.IsStopped))
+            if (e.PropertyName == nameof(BusRouterControlContext.IsStopped))
             {
                 OnCanExecuteChanged();
             }
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
-            _busRoutingProvider.PropertyChanged -= OnServiceChanged;
-            base.Dispose();
+            _busRouterControlContextStore.BusRouterControlContextObject.PropertyChanged -= OnControlContextPropertyChanged;
         }
     }
 }

@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Snippets\" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.8" />
   </ItemGroup>
 
   <ItemGroup>

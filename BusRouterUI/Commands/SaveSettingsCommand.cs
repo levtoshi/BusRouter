@@ -1,39 +1,40 @@
 ﻿using BLL.Models;
 using BLL.Services.BusRoutingProviders;
 using BusRouterUI.Navigation.Services;
+using BusRouterUI.Stores;
 using BusRouterUI.ViewModels;
 using System.ComponentModel;
 
 namespace BusRouterUI.Commands
 {
-    public class SaveSettingsCommand : CommandBase
+    public class SaveSettingsCommand : CommandBase, IDisposable
     {
         private readonly SetBusRoutingViewModel _setBusRoutingViewModel;
-        private readonly Map _mapObject;
-        private readonly INavigationService _navigationService;
+        private readonly INavigationService<BusRouterViewModel> _navigationService;
+        private readonly MapStore _mapStore;
+        private readonly BusRoutingContextStore _busRoutingContextStore;
 
-        public SaveSettingsCommand(SetBusRoutingViewModel setBusRoutingViewModel, Map map, INavigationService navigationService)
+        public SaveSettingsCommand(SetBusRoutingViewModel setBusRoutingViewModel, INavigationService<BusRouterViewModel> navigationService, MapStore mapStore, BusRoutingContextStore busRoutingContextStore)
         { 
             _setBusRoutingViewModel = setBusRoutingViewModel;
             _setBusRoutingViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
-            _mapObject = map;
             _navigationService = navigationService;
+            _mapStore = mapStore;
+            _busRoutingContextStore = busRoutingContextStore;
         }
 
         public override void Execute(object? parameter)
         {
-            IBusRoutingProvider busRoutingProvider = new BusRoutingProvider(
-                _mapObject,
-                new BusRoutingContext(_setBusRoutingViewModel.StopWaitMS, _setBusRoutingViewModel.UpdateMapMS, _setBusRoutingViewModel.StopPeopleIncreaseMS));
+            _busRoutingContextStore.Update(_setBusRoutingViewModel.StopWaitMS, _setBusRoutingViewModel.UpdateMapMS, _setBusRoutingViewModel.StopPeopleIncreaseMS);
 
-            foreach (Bus bus in _mapObject.Buses)
+            foreach (Bus bus in _mapStore.MapObject.Buses)
             {
                 bus.SpeedPixelsPerSecond = _setBusRoutingViewModel.SpeedPixelsPerSecond;
                 bus.AmountOfSeats = _setBusRoutingViewModel.AmountOfSeats;
             }
 
-            _navigationService.NavigateTo<BusRouterViewModel>(_mapObject, busRoutingProvider);
+            _navigationService.Navigate();
         }
 
         public override bool CanExecute(object? parameter)
@@ -49,10 +50,9 @@ namespace BusRouterUI.Commands
             }
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             _setBusRoutingViewModel.PropertyChanged -= OnViewModelPropertyChanged;
-            base.Dispose();
         }
     }
 }

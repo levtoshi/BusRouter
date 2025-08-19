@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿using BLL.InterfaceAccessors;
+using BLL.Models;
 
 namespace BLL.Services.StopServices
 {
@@ -8,11 +9,12 @@ namespace BLL.Services.StopServices
         private readonly BusRouterControlContext _busRouterControlContext;
         private readonly int _stopPeopleIncreaseMS;
 
-        public StopService(Map mapObject, BusRouterControlContext busRouterControlContext, int stopPeopleIncreaseMS)
+        public StopService(IMapAccessor mapAccessor, IBusRouterControlContextAccessor busRouterControlContextAccessor, IBusRoutingContextAccessor busRoutingContextAccessor)
         {
-            _mapObject = mapObject;
-            _busRouterControlContext = busRouterControlContext;
-            _stopPeopleIncreaseMS = stopPeopleIncreaseMS;
+            _mapObject = mapAccessor.GetMap();
+            _busRouterControlContext = busRouterControlContextAccessor.GetBusRouterControlContext();
+            BusRoutingContext busRoutingContext = busRoutingContextAccessor.GetBusRoutingContext();
+            _stopPeopleIncreaseMS = busRoutingContext.StopPeopleIncreaseMS;
         }
 
         public void GenerateStopPeople(object obj)

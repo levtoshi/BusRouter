@@ -1,4 +1,5 @@
-﻿using BLL.Models;
+﻿using BLL.InterfaceAccessors;
+using BLL.Models;
 using System.Drawing;
 
 namespace BLL.Services.BusServices
@@ -10,12 +11,13 @@ namespace BLL.Services.BusServices
         private readonly int _stopWaitMS;
         private readonly int _updateMapMS;
 
-        public BusService(Map mapObject, BusRouterControlContext busRouterControlContext, int stopWaitMS, int updateMapMS)
+        public BusService(IMapAccessor mapAccessor, IBusRouterControlContextAccessor busRouterControlContextAccessor, IBusRoutingContextAccessor busRoutingContextAccessor)
         {
-            _mapObject = mapObject;
-            _busRouterControlContext = busRouterControlContext;
-            _stopWaitMS = stopWaitMS;
-            _updateMapMS = updateMapMS;
+            _mapObject = mapAccessor.GetMap();
+            _busRouterControlContext = busRouterControlContextAccessor.GetBusRouterControlContext();
+            BusRoutingContext busRoutingContext = busRoutingContextAccessor.GetBusRoutingContext();
+            _stopWaitMS = busRoutingContext.StopWaitMS;
+            _updateMapMS = busRoutingContext.UpdateMapMS;
         }
 
 

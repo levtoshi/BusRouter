@@ -1,57 +1,26 @@
-﻿using BLL.Models;
+﻿using BLL.InterfaceAccessors;
+using BLL.Models;
 using BLL.Services.BusServices;
 using BLL.Services.StopServices;
 using System.ComponentModel;
 
 namespace BLL.Services.BusRoutingProviders
 {
-    public class BusRoutingProvider : IBusRoutingProvider, INotifyPropertyChanged
+    public class BusRoutingProvider : IBusRoutingProvider, IDisposable
     {
         private readonly Map _mapObject;
         private readonly BusRouterControlContext _busRouterControlContext;
         private readonly IBusService _busService;
         private readonly IStopService _stopService;
 
-        private bool _isStopped;
-        public bool IsStopped
+        public BusRoutingProvider(IMapAccessor mapAccessor, IBusRouterControlContextAccessor busRouterControlContextAccessor, IBusService busService, IStopService stopService)
         {
-            get => _isStopped;
-            set
-            {
-                _isStopped = value;
-                OnPropertyChanged(nameof(IsStopped));
-            }
-        }
+            _mapObject = mapAccessor.GetMap();
 
-        private bool _isStarted;
-        public bool IsStarted
-        {
-            get => _isStarted;
-            set
-            {
-                _isStarted = value;
-                OnPropertyChanged(nameof(IsStarted));
-            }
-        }
+            _busRouterControlContext = busRouterControlContextAccessor.GetBusRouterControlContext();
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public BusRoutingProvider(Map map, BusRoutingContext busRoutingContext)
-        {
-            _mapObject = map;
-
-            _busRouterControlContext = new BusRouterControlContext();
-
-            _busService = new BusService(_mapObject, _busRouterControlContext, busRoutingContext.StopWaitMS, busRoutingContext.UpdateMapMS);
-            _stopService = new StopService(_mapObject, _busRouterControlContext, busRoutingContext.StopPeopleIncreaseMS);
-
-            IsStopped = true;
-            IsStarted = false;
+            _busService = busService;
+            _stopService = stopService;
 
             InitializeResetEvents();
         }
@@ -74,26 +43,30 @@ namespace BLL.Services.BusRoutingProviders
             {
                 ThreadPool.QueueUserWorkItem(_stopService.GenerateStopPeople, i);
             }
-            IsStopped = false;
-            IsStarted = true;
+            _busRouterControlContext.IsStopped = false;
+            _busRouterControlContext.IsStarted = true;
         }
 
         public void StopThreads()
         {
             _busRouterControlContext.StopTasks.Reset();
-            IsStopped = true;
+            _busRouterControlContext.IsStopped = true;
         }
 
         public void RestartThreads()
         {
             _busRouterControlContext.StopTasks.Set();
-            IsStopped = false;
+            _busRouterControlContext.IsStopped = false;
         }
 
         public void Dispose()
         {
-            _busRouterControlContext.BusRouterCancellationTokenSource.Cancel();
-            _busRouterControlContext.BusRouterCancellationTokenSource.Dispose();
+            try
+            {
+                _busRouterControlContext.BusRouterCancellationTokenSource.Cancel();
+                _busRouterControlContext.BusRouterCancellationTokenSource.Dispose();
+            }
+            catch { }
 
             DisposeEventHandlers();
         }

@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using BusRouterUI.Commands;
 using BusRouterUI.Navigation.Services;
+using BusRouterUI.Stores;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -147,9 +148,9 @@ namespace BusRouterUI.ViewModels
 
         public ICommand SaveCommand { get; }
 
-        public SetBusRoutingViewModel(Map map, INavigationService navigationService)
+        public SetBusRoutingViewModel(INavigationService<BusRouterViewModel> navigationService, MapStore mapStore, BusRoutingContextStore busRoutingContextStore)
         {
-            SaveCommand = new SaveSettingsCommand(this, map, navigationService);
+            SaveCommand = new SaveSettingsCommand(this, navigationService, mapStore, busRoutingContextStore);
             _propertyNameToErrorsDictionary = new Dictionary<string, List<string>>();
 
             StopWaitMS = 2000;
@@ -190,7 +191,10 @@ namespace BusRouterUI.ViewModels
 
         public override void Dispose()
         {
-            (SaveCommand as CommandBase).Dispose();
+            if (SaveCommand is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
             base.Dispose();
         }
     }

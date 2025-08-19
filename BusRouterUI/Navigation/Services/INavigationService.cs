@@ -2,8 +2,8 @@
 
 namespace BusRouterUI.Navigation.Services
 {
-    public interface INavigationService
+    public interface INavigationService<TViewModel> where TViewModel : ViewModelsBase
     {
-        void NavigateTo<TViewModel>(params object[] parameters) where TViewModel : ViewModelsBase;
+        void Navigate();
     }
 }
