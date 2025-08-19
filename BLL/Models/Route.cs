@@ -4,8 +4,15 @@ namespace BLL.Models
 {
     public class Route
     {
-        public string RouteName { get; set; }
-        public PointF StartPoint { get; set; }
-        public PointF EndPoint { get; set; }
+        public string RouteName { get; }
+        public PointF StartPoint { get; }
+        public PointF EndPoint { get; }
+
+        public Route(string routeName, PointF startPoint, PointF endPoint)
+        {
+            RouteName = routeName;
+            StartPoint = startPoint;
+            EndPoint = endPoint;
+        }
     }
 }

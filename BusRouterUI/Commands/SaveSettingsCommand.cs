@@ -1,5 +1,4 @@
-﻿using BLL.Models;
-using BusRouterUI.Navigation.Services;
+﻿using BusRouterUI.Navigation.Services;
 using BusRouterUI.Stores;
 using BusRouterUI.ViewModels;
 using System.ComponentModel;
@@ -27,11 +26,7 @@ namespace BusRouterUI.Commands
         {
             _busRoutingContextStore.Update(_setBusRoutingViewModel.StopWaitMS, _setBusRoutingViewModel.UpdateMapMS, _setBusRoutingViewModel.StopPeopleIncreaseMS);
 
-            foreach (Bus bus in _mapStore.MapObject.Buses)
-            {
-                bus.SpeedPixelsPerSecond = _setBusRoutingViewModel.SpeedPixelsPerSecond;
-                bus.AmountOfSeats = _setBusRoutingViewModel.AmountOfSeats;
-            }
+            _mapStore.CreateMap(_setBusRoutingViewModel.SpeedPixelsPerSecond, _setBusRoutingViewModel.AmountOfSeats);
 
             _navigationService.Navigate();
         }

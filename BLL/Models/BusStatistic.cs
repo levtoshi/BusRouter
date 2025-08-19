@@ -4,8 +4,8 @@ namespace BLL.Models
 {
     public class BusStatistic : INotifyPropertyChanged
     {
-        public string BusName { get; set; }
-        public List<StopStatistic> StopStatistic { get; set; }
+        public string BusName { get; }
+        public List<StopStatistic> StopStatistic { get; }
 
         private int _peopleAmount;
         public int PeopleAmount
@@ -22,6 +22,13 @@ namespace BLL.Models
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public BusStatistic(string busName, List<StopStatistic> stopStatistics, int peopleAmount)
+        {
+            BusName = busName;
+            StopStatistic = stopStatistics;
+            PeopleAmount = peopleAmount;
+        }
 
         protected void OnPropertyChanged(string propertyName)
         {

@@ -14,9 +14,9 @@ namespace BusRouterUI.Stores
             }
         }
 
-        public MapStore()
+        public void CreateMap(int busSpeedPixelsPerSecond, int busAmountOfSeats)
         {
-            _mapObject = MapInitializer.InitializeMap();
+            _mapObject = MapInitializer.InitializeMap(busSpeedPixelsPerSecond, busAmountOfSeats);
         }
     }
 }

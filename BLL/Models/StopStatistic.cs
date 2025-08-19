@@ -4,7 +4,7 @@ namespace BLL.Models
 {
     public class StopStatistic : INotifyPropertyChanged
     {
-        public string StopName { get; set; }
+        public string StopName { get; }
 
         private int _peopleAmount;
         public int PeopleAmount
@@ -18,6 +18,12 @@ namespace BLL.Models
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public StopStatistic(string stopName, int peopleAmount)
+        {
+            StopName = stopName;
+            PeopleAmount = peopleAmount;
+        }
 
         protected void OnPropertyChanged(string propertyName)
         {

@@ -4,8 +4,15 @@ namespace BLL.Models
 {
     public class Stop
     {
-        public string Name { get; set; }
-        public List<BusStatistic> PeopleOnStop { get; set; }
-        public PointF Coordinates { get; set; }
+        public string Name { get; }
+        public List<BusStatistic> PeopleOnStop { get; }
+        public PointF Coordinates { get; }
+
+        public Stop(string stopName, List<BusStatistic> busStatistics, PointF stopCoordinates)
+        {
+            Name = stopName;
+            PeopleOnStop = busStatistics;
+            Coordinates = stopCoordinates;
+        }
     }
 }
