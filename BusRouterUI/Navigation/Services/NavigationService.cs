@@ -16,10 +16,6 @@ namespace BusRouterUI.Navigation.Services
 
         public void Navigate()
         {
-            if (_navigationStore.CurrentViewModel != null)
-            {
-                _navigationStore.CurrentViewModel.Dispose();
-            }
             _navigationStore.CurrentViewModel = _createViewModel();
         }
     }

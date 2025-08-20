@@ -66,8 +66,6 @@ namespace BusRouterUI.ViewModels
 
         public override void Dispose()
         {
-            _busRoutingProvider.Dispose();
-
             _busRouterControlContextStore.BusRouterControlContextObject.PropertyChanged -= OnControlContextPropertyChanged;
 
             foreach (BusViewModel bus in Buses)

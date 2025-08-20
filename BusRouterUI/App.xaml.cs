@@ -44,9 +44,6 @@ namespace BusRouterUI
         
         protected override async void OnExit(ExitEventArgs e)
         {
-            MainViewModel mainViewModel = _host.Services.GetRequiredService<MainViewModel>();
-            mainViewModel.Dispose();
-
             await _host.StopAsync();
             _host.Dispose();
             

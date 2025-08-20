@@ -11,8 +11,8 @@ namespace BusRouterUI.HostBuilders
             hostBuilder.ConfigureServices(services =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddSingleton<SetBusRoutingViewModel>();
-                services.AddSingleton<BusRouterViewModel>();
+                services.AddTransient<SetBusRoutingViewModel>();
+                services.AddTransient<BusRouterViewModel>();
             });
 
             return hostBuilder;

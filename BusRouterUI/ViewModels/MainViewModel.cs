@@ -22,7 +22,6 @@ namespace BusRouterUI.ViewModels
         public override void Dispose()
         {
             _navigationStore.CurrentViewModelChanged -= OnCurrentViewModelChanged;
-            _navigationStore.CurrentViewModel.Dispose();
             base.Dispose();
         }
     }
