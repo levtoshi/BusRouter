@@ -99,4 +99,5 @@ Implemented using `ManualResetEventSlim`, allowing the entire simulation to "fre
 ![RouterProcess](Screenshots/process.jpg)
 
 ## 🎥 Simulation Demo
-[<video src="Videos/bus-router.mp4" width="100%" controls autoplay loop muted></video>](https://github.com/levtoshi/BusRouter/blob/master/Videos/bus-router.mp4)
+
+https://github.com/levtoshi/BusRouter/blob/main/Videos/bus-router.mp4
