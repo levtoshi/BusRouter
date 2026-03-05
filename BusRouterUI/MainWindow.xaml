@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BusRouterUI" xmlns:views="clr-namespace:BusRouterUI.Views"
         xmlns:vms="clr-namespace:BusRouterUI.ViewModels"
         mc:Ignorable="d"
-        Title="BusRouter" Height="950" Width="1400" MinHeight="950" MaxHeight="950" MinWidth="1400" MaxWidth="1400" WindowStartupLocation="CenterScreen">
+        Title="BusRouter" Height="750" Width="1200" MinHeight="750" MaxHeight="750" MinWidth="1200" MaxWidth="1200" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:BusRouterViewModel}">

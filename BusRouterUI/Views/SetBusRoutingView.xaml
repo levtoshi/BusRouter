@@ -22,28 +22,28 @@
 
         <TextBlock Grid.Row="0" FontSize="28" FontWeight="Bold">Bus Routing Settings</TextBlock>
 
-        <TextBlock Grid.Row="1" Margin="0,30,0,0">Enter amount of stop wait milliseconds (2000 recommended):</TextBlock>
+        <TextBlock Grid.Row="1" Margin="0,15,0,0">Enter amount of stop wait milliseconds (2000 recommended):</TextBlock>
 
         <TextBox Grid.Row="2" Text="{Binding StopWaitMS, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="3" Margin="0,30,0,0">Enter the number of pixels the bus should move per second (150 recommended):</TextBlock>
+        <TextBlock Grid.Row="3" Margin="0,15,0,0">Enter the number of pixels the bus should move per second (150 recommended):</TextBlock>
 
         <TextBox Grid.Row="4" Text="{Binding SpeedPixelsPerSecond, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="5" Margin="0,30,0,0">Enter amount of milliseconds to update map (10 recommended):</TextBlock>
+        <TextBlock Grid.Row="5" Margin="0,15,0,0">Enter amount of milliseconds to update map (10 recommended):</TextBlock>
 
         <TextBox Grid.Row="6" Text="{Binding UpdateMapMS, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="7" Margin="0,30,0,0">Enter amount of milliseconds to add person  stop (1250 recommended):</TextBlock>
+        <TextBlock Grid.Row="7" Margin="0,15,0,0">Enter amount of milliseconds to add person  stop (1250 recommended):</TextBlock>
 
         <TextBox Grid.Row="8" Text="{Binding StopPeopleIncreaseMS, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Grid.Row="9" Margin="0,30,0,0">Enter amount of seats for each bus (50 recommended):</TextBlock>
+        <TextBlock Grid.Row="9" Margin="0,15,0,0">Enter amount of seats for each bus (50 recommended):</TextBlock>
 
         <TextBox Grid.Row="10" Text="{Binding AmountOfSeats, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Button Grid.Row="11" Margin="50,30,50,0" Height="70" Command="{Binding SaveCommand}">
-            <TextBlock FontSize="28">Save Changes</TextBlock>
+        <Button Grid.Row="11" Margin="70,15,70,0" Height="50" Command="{Binding SaveCommand}">
+            <TextBlock FontSize="24">Save Changes</TextBlock>
         </Button>
     </Grid>
 </UserControl>

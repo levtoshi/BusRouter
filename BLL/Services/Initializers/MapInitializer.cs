@@ -43,10 +43,10 @@ namespace BLL.Services.Initializers
             _routesNames.Add("B-3");
 
             _coordinates = new List<PointF>();
-            _coordinates.Add(new PointF(50, 50));
-            _coordinates.Add(new PointF(690, 50));
-            _coordinates.Add(new PointF(690, 700));
-            _coordinates.Add(new PointF(50, 700));
+            _coordinates.Add(new PointF(37.5f, 37.5f));
+            _coordinates.Add(new PointF(517.5f, 37.5f));
+            _coordinates.Add(new PointF(517.5f, 525));
+            _coordinates.Add(new PointF(37.5f, 525));
         }
 
         private static List<Route> InitializeRoutes()
