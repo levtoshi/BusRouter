@@ -97,7 +97,3 @@ Implemented using `ManualResetEventSlim`, allowing the entire simulation to "fre
 ### Bus router in process 
 
 ![RouterProcess](Screenshots/process.jpg)
-
-## 🎥 Simulation Demo
-
-https://github.com/levtoshi/BusRouter/blob/main/Videos/bus-router.mp4
